@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2010 Stephen M. Cameron
+	Copyright (C) 2013 Stephen M. Cameron
 	Author: Stephen M. Cameron
 
 	This file is part of Cosmic Space Boxinator.
