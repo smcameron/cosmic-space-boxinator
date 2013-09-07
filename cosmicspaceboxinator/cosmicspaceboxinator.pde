@@ -211,9 +211,16 @@ void add_nebula()
 	float a, dist;
 	int nsize = int(xdim * 1.0);
 	float noisex, noisey, nz;
+	float nrx, nry, ngx, ngy, nbx, nby, nzc, nzr, nzb, nzg;
 
 	noisex = random(500) + xdim;
 	noisey = random(500) + ydim;
+	nrx = random(500) + xdim; 
+	nry = random(500) + ydim; 
+	ngx = random(500) + xdim; 
+	ngy = random(500) + ydim; 
+	nbx = random(500) + xdim; 
+	nby = random(500) + ydim; 
 
 	for (x = -xdim * 3; x < xdim * 3; x++) {
 		for (y = -ydim * 2; y < ydim * 2; y++) {
@@ -229,7 +236,15 @@ void add_nebula()
 				nz = noise((float(x) + noisex) / 20.0, (float(y) + noisey) / 20.0);
 				nz = nz * nz;
 				a = a * nz;
-				plotpoint(2, ox + x, oy + y, 100, 100, 255, int(a * 255));
+			
+				nzr = noise((float(x) + nrx) / 30.0, (float(y) + nry) / 30.0);
+				nzg = noise((float(x) + ngx) / 30.0, (float(y) + ngy) / 30.0);
+				nzb = noise((float(x) + nbx) / 30.0, (float(y) + nby) / 30.0);
+				plotpoint(2, ox + x, oy + y,
+						int(50 + nzr * 205),
+						int(50 + nzg * 205),
+						int(100 + nzb * 155),
+						int(a * 255));
 			}
 		}
 	}
