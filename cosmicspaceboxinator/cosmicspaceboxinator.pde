@@ -1,8 +1,8 @@
 
 PImage[] img = new PImage[6];
-int xdim = 512;
-int ydim = 512;
-int nstars = 1000;
+int xdim = 2048;
+int ydim = 2048;
+int nstars = 10000;
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
@@ -183,7 +183,7 @@ void draw_random_star()
 	x = int(random(xdim));
 	y = int(random(ydim));
 	img = int(random(6 * 100)) % 6;
-	draw_random_star_at(img, x, y, 15.0);
+	draw_random_star_at(img, x, y, 25.0);
 }
 
 void draw_random_stars()
@@ -201,6 +201,22 @@ void draw_all_images()
 	image(img[3], xdim * 3, ydim);
 	image(img[4], xdim * 2, 0);
 	image(img[5], xdim * 2, ydim * 2);
+}
+
+void save_all_images()
+{
+	image(img[0], 0, 0);
+	save("image0.png");
+	image(img[1], 0, 0);
+	save("image1.png");
+	image(img[2], 0, 0);
+	save("image2.png");
+	image(img[3], 0, 0);
+	save("image3.png");
+	image(img[4], 0, 0);
+	save("image4.png");
+	image(img[5], 0, 0);
+	save("image5.png");
 }
 
 void add_nebula()
@@ -260,8 +276,8 @@ void setup()
 {
 
 
-	size(xdim * 4,  ydim * 3);
-
+	/* size(xdim * 4,  ydim * 3); */
+	size(xdim,  ydim);
 
 	for (int i = 0;  i < 6; i++) {
 		img[i] = createImage(xdim, ydim, ARGB);
@@ -278,6 +294,6 @@ void setup()
 
 	draw_random_stars();
 	add_nebula();
-	draw_all_images();
+	save_all_images();
 }
 
