@@ -209,7 +209,7 @@ void add_nebula()
 	int ox = xdim / 2;
 	int oy = ydim / 2;
 	float a, dist;
-	int nsize = int(xdim * 2.0);
+	int nsize = int(xdim * 1.0);
 
 	for (x = -xdim * 3; x < xdim * 3; x++) {
 		for (y = -ydim * 2; y < ydim * 2; y++) {
