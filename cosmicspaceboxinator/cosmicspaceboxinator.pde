@@ -203,6 +203,31 @@ void draw_all_images()
 	image(img[5], xdim * 2, ydim * 2);
 }
 
+void add_nebula()
+{
+	int x, y;
+	int ox = xdim / 2;
+	int oy = ydim / 2;
+	float a, dist;
+	int nsize = int(xdim * 2.0);
+
+	for (x = -xdim * 3; x < xdim * 3; x++) {
+		for (y = -ydim * 2; y < ydim * 2; y++) {
+			dist = sqrt(x * x + y * y);
+			if (dist < nsize / 2) {
+				a = 0.5;
+			} else {
+				a = (0.5 - (dist - nsize / 2) / (nsize / 2));
+				if (a < 0.0)
+					a = 0.0;
+			}
+			if (a > 0.01) {
+				plotpoint(2, ox + x, oy + y, 100, 100, 255, int(a * 255));
+			}
+		}
+	}
+}
+
 void setup()
 {
 
@@ -224,6 +249,7 @@ void setup()
 	}
 
 	draw_random_stars();
+	add_nebula();
 	draw_all_images();
 }
 
