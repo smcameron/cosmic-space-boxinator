@@ -210,18 +210,25 @@ void add_nebula()
 	int oy = ydim / 2;
 	float a, dist;
 	int nsize = int(xdim * 1.0);
+	float noisex, noisey, nz;
+
+	noisex = random(500) + xdim;
+	noisey = random(500) + ydim;
 
 	for (x = -xdim * 3; x < xdim * 3; x++) {
 		for (y = -ydim * 2; y < ydim * 2; y++) {
 			dist = sqrt(x * x + y * y);
 			if (dist < nsize / 2) {
-				a = 0.5;
+				a = 0.7;
 			} else {
-				a = (0.5 - (dist - nsize / 2) / (nsize / 2));
+				a = (0.7 - (dist - nsize / 2) / (nsize / 2));
 				if (a < 0.0)
 					a = 0.0;
 			}
 			if (a > 0.01) {
+				nz = noise((float(x) + noisex) / 20.0, (float(y) + noisey) / 20.0);
+				nz = nz * nz;
+				a = a * nz;
 				plotpoint(2, ox + x, oy + y, 100, 100, 255, int(a * 255));
 			}
 		}
