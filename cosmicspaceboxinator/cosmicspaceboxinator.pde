@@ -2,6 +2,7 @@
 PImage[] img = new PImage[6];
 int xdim = 256;
 int ydim = 256;
+int nstars = 1000;
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
@@ -139,6 +140,59 @@ void plotpoint(int imgnum, int x, int y, int r, int g, int b, int a)
 	}
 }
 
+void draw_a_star(int img, int x, int y, int size, int r, int g, int b)
+{
+	float a;
+
+	for (int i = -size; i <= size; i++) {
+		a = 255.0 - ((255.0 / float(size)) * abs(float(i)));
+		plotpoint(img, x + i, y, r, g, b, int(a));
+		plotpoint(img, x, y + i, r, g, b, int(a));
+	}
+
+	for (int i = -size / 2; i <= size / 2; i++) {
+		a = 255.0 - ((255.0 / (float(size) / 2.0)) * abs(float(i)));
+		plotpoint(img, x + i, y + i, r, g, b, int(a));
+		plotpoint(img, x - i, y + i, r, g, b, int(a));
+	}
+}
+
+void draw_random_star_at(int img, int x, int y, float maxsize)
+{
+	int size, r, g, b;
+
+	size = int(random(1.0) * random(1.0) * random(1.0) * random(1.0) * maxsize) + 1;
+	r = 255 - int(random(60));
+	g = 255 - int(random(60));
+	b = 255 - int(random(60));
+
+	if (size == 1) {
+		float f = random(1.0);
+		r = int(r * f);
+		g = int(r * f);
+		b = int(r * f);
+	}
+
+	draw_a_star(img, x, y, size, r, g, b);
+}
+
+void draw_random_star()
+{
+	int x, y, img;
+
+	x = int(random(xdim));
+	y = int(random(ydim));
+	img = int(random(6 * 100)) % 6;
+	draw_random_star_at(img, x, y, 15.0);
+}
+
+void draw_random_stars()
+{
+	for (int i = 0; i < nstars; i++) {
+		draw_random_star();
+	}
+}
+
 void draw_all_images()
 {
 	image(img[0], 0, ydim);
@@ -169,6 +223,7 @@ void setup()
 		img[0].updatePixels();
 	}
 
+	draw_random_stars();
 	draw_all_images();
 }
 
