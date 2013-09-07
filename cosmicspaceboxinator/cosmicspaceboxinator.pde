@@ -1,7 +1,7 @@
 
 PImage[] img = new PImage[6];
-int xdim = 256;
-int ydim = 256;
+int xdim = 512;
+int ydim = 512;
 int nstars = 1000;
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
@@ -212,6 +212,8 @@ void add_nebula()
 	int nsize = int(xdim * 1.0);
 	float noisex, noisey, nz;
 	float nrx, nry, ngx, ngy, nbx, nby, nzc, nzr, nzb, nzg;
+	float neb_noise_scale = float(xdim) / 10.0;
+	float color_noise_scale = float(xdim) / 7.0;
 
 	noisex = random(500) + xdim;
 	noisey = random(500) + ydim;
@@ -233,13 +235,17 @@ void add_nebula()
 					a = 0.0;
 			}
 			if (a > 0.01) {
-				nz = noise((float(x) + noisex) / 20.0, (float(y) + noisey) / 20.0);
+				nz = noise((float(x) + noisex) / neb_noise_scale,
+						(float(y) + noisey) / neb_noise_scale);
 				nz = nz * nz;
 				a = a * nz;
 			
-				nzr = noise((float(x) + nrx) / 30.0, (float(y) + nry) / 30.0);
-				nzg = noise((float(x) + ngx) / 30.0, (float(y) + ngy) / 30.0);
-				nzb = noise((float(x) + nbx) / 30.0, (float(y) + nby) / 30.0);
+				nzr = noise((float(x) + nrx) / color_noise_scale,
+						(float(y) + nry) / color_noise_scale);
+				nzg = noise((float(x) + ngx) / color_noise_scale,
+						(float(y) + ngy) / color_noise_scale);
+				nzb = noise((float(x) + nbx) / color_noise_scale,
+						(float(y) + nby) / color_noise_scale);
 				plotpoint(2, ox + x, oy + y,
 						int(50 + nzr * 205),
 						int(50 + nzg * 205),
