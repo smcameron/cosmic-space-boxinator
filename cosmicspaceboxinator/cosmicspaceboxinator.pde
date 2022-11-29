@@ -38,6 +38,7 @@ int neb_max_red = 255;
 int neb_max_green = 70;
 int neb_max_blue = 255;
 int neb_max_opacity = 200;
+int nebula_size = int(xdim * 1.0);
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
@@ -260,7 +261,6 @@ void add_nebula()
 	int ox = xdim / 2;
 	int oy = ydim / 2;
 	float a, dist;
-	int nsize = int(xdim * 1.0);
 	float noisex, noisey, nz;
 	float nrx, nry, ngx, ngy, nbx, nby, nzc, nzr, nzb, nzg;
 	float neb_noise_scale = float(xdim) / 10.0;
@@ -278,10 +278,10 @@ void add_nebula()
 	for (x = -xdim * 3; x < xdim * 3; x++) {
 		for (y = -ydim * 2; y < ydim * 2; y++) {
 			dist = sqrt(x * x + y * y);
-			if (dist < nsize / 2) {
+			if (dist < nebula_size / 2) {
 				a = 0.7;
 			} else {
-				a = (0.7 - (dist - nsize / 2) / (nsize / 2));
+				a = (0.7 - (dist - nebula_size / 2) / (nebula_size / 2));
 				if (a < 0.0)
 					a = 0.0;
 			}
