@@ -37,6 +37,7 @@ int neb_min_blue = 150;
 int neb_max_red = 255;
 int neb_max_green = 70;
 int neb_max_blue = 255;
+int neb_max_opacity = 200;
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
@@ -300,7 +301,7 @@ void add_nebula()
 						int(neb_min_red + nzr * (neb_max_red - neb_min_red)),
 						int(neb_min_green + nzg * (neb_max_green - neb_min_green)),
 						int(neb_min_blue + nzb * (neb_max_blue - neb_min_blue)),
-						int(a * 255));
+						int(a * neb_max_opacity));
 			}
 		}
 	}
