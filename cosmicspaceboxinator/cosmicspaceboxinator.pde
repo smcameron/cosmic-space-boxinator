@@ -30,6 +30,15 @@ int xdim = 2048;
 int ydim = 2048;
 int nstars = 10000;
 
+/* Nebula color controls, each value is between 0 and 255, but probably 0 - 100
+ * and the proportions control the overall color of the nebula.  The lower the
+ * numbers, the more variation is allowed, as the calculation is something like:
+ * (neb_min_red + noise_value * (255 - neb_min_red))
+ */
+int neb_min_red = 20;
+int neb_min_green = 120;
+int neb_min_blue = 50;
+
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
 	return overchannel * overalpha + underchannel * underalpha * (1.0 - overalpha);
@@ -289,9 +298,9 @@ void add_nebula()
 				nzb = noise((float(x) + nbx) / color_noise_scale,
 						(float(y) + nby) / color_noise_scale);
 				plotpoint(2, ox + x, oy + y,
-						int(50 + nzr * 205),
-						int(50 + nzg * 205),
-						int(100 + nzb * 155),
+						int(neb_min_red + nzr * (255 - neb_min_red)),
+						int(neb_min_green + nzg * (255 - neb_min_green)),
+						int(neb_min_blue + nzb * (255 - neb_min_blue)),
 						int(a * 255));
 			}
 		}
