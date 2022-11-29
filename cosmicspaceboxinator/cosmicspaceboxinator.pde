@@ -28,16 +28,15 @@ PImage[] img = new PImage[6];
  */
 int xdim = 2048;
 int ydim = 2048;
-int nstars = 10000;
+int nstars = 40000;
 
-/* Nebula color controls, each value is between 0 and 255, but probably 0 - 100
- * and the proportions control the overall color of the nebula.  The lower the
- * numbers, the more variation is allowed, as the calculation is something like:
- * (neb_min_red + noise_value * (255 - neb_min_red))
- */
-int neb_min_red = 20;
-int neb_min_green = 120;
-int neb_min_blue = 50;
+/* Nebula color controls, each value is between 0 and 255 */
+int neb_min_red = 150;
+int neb_min_green = 50;
+int neb_min_blue = 150;
+int neb_max_red = 255;
+int neb_max_green = 70;
+int neb_max_blue = 255;
 
 float alphablendcolor(float underchannel, float underalpha, float overchannel, float overalpha)
 {
@@ -298,9 +297,9 @@ void add_nebula()
 				nzb = noise((float(x) + nbx) / color_noise_scale,
 						(float(y) + nby) / color_noise_scale);
 				plotpoint(2, ox + x, oy + y,
-						int(neb_min_red + nzr * (255 - neb_min_red)),
-						int(neb_min_green + nzg * (255 - neb_min_green)),
-						int(neb_min_blue + nzb * (255 - neb_min_blue)),
+						int(neb_min_red + nzr * (neb_max_red - neb_min_red)),
+						int(neb_min_green + nzg * (neb_max_green - neb_min_green)),
+						int(neb_min_blue + nzb * (neb_max_blue - neb_min_blue)),
 						int(a * 255));
 			}
 		}
