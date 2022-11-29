@@ -31,13 +31,22 @@ which are laid out as follows:
 
 To run this thing, after cloning the project wherever you like in the usual manner,
 (I will assume that you cloned the project into $MYGITREPO)
-do the following:
+do the following to create a symbolic link from your Processing sketchbook into
+the git repo. Obviously, these instructions are for Linux/Unix.
+
+On Linux/Unix:
 
 ```
 	cd $HOME/sketchbook
 	mkdir cosmicspaceboxinator
 	cd cosmicspaceboxinator
 	ln -s $MYGITREPO/cosmicspaceboxinator/cosmicspaceboxinator.pde
+```
+
+On Windows:
+
+```
+	Someone send me a patch to fill in the instructions for Windows.
 ```
 
 Now you can run it from within the Processing environment as usual
