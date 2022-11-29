@@ -53,3 +53,22 @@ Now you can run it from within the Processing environment as usual
 without being forced to locate your git repo inside the ~/sketchbook
 directory.
 
+There are some knobs at the top of the cosmicspaceboxinator.pde that you
+can use to control various aspects of the generated skybox:
+
+```
+int xdim = 2048;
+int ydim = 2048;
+int nstars = 40000;
+
+/* Nebula color controls, each value is between 0 and 255 */
+int neb_min_red = 150;
+int neb_min_green = 50;
+int neb_min_blue = 150;
+int neb_max_red = 255;
+int neb_max_green = 70;
+int neb_max_blue = 255;
+int neb_max_opacity = 200;
+int nebula_size = int(xdim * 1.0);
+```
+
