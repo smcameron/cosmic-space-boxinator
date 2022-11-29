@@ -29,15 +29,15 @@ which are laid out as follows:
 
 ```
 
-To run this thing, after cloning the project wherever you like in the usual manner.
-I will assume that you cloned the project into $MYGITREPO
+To run this thing, after cloning the project wherever you like in the usual manner,
+(I will assume that you cloned the project into $MYGITREPO)
 do the following:
 
 ```
 	cd $HOME/sketchbook
 	mkdir cosmicspaceboxinator
 	cd cosmicspaceboxinator
-	ln -s $GITREPO/cosmicspaceboxinator/cosmicspaceboxinator.pde
+	ln -s $MYGITREPO/cosmicspaceboxinator/cosmicspaceboxinator.pde
 ```
 
 Now you can run it from within the Processing environment as usual
