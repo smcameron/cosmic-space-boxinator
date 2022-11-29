@@ -20,6 +20,12 @@
 */
 
 PImage[] img = new PImage[6];
+
+/* NOTE xdim and ydim need to match the parameters to size() in setup().
+ * Apparently processing is so fucking stupid that you cannot use variables
+ * as parameters to size(), only constants.  There *cannot* be a good reason
+ * for that other than stupidity.
+ */
 int xdim = 2048;
 int ydim = 2048;
 int nstars = 10000;
@@ -294,10 +300,10 @@ void add_nebula()
 
 void setup()
 {
-
-
-	/* size(xdim * 4,  ydim * 3); */
-	size(xdim,  ydim);
+	/* Note: if you change the parameters to size, you must change xdim and ydim
+	 * at the top of this file to match.
+	 */
+	size(2048, 2048);
 
 	for (int i = 0;  i < 6; i++) {
 		img[i] = createImage(xdim, ydim, ARGB);
